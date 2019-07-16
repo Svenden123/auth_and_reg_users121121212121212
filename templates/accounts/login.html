@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="header"></div>
+    <h1>Авторизация</h1>
+    <p>Пожалуйста, введите логин и пароль</p>
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+            <td>{{ form.errors }}</td>
+        </div>
+        <div>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+            <td>{{ form.errors }}</td>
+        </div>
+
+        <div>
+            <button type="submit">Авторизоваться</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+        </form>
+
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+
+    </form>
+    <a href="/">Вернуться на главную</a>
+
+</div>
+{% endblock %}
+

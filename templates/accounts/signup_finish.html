@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Добро пожаловать{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header"></div>
+
+        {% if form.first_name %}
+            <h2>Добро пожаловать, {{ user_form.get_username }}!</h2>
+        {% else %}
+            <h2>Добро пожаловать, {{ user_form.username }}!</h2>
+        {% endif %}
+        <p>Регистрация прошла успешно,  <a href="{% url 'login' %}">войти</a>.</p>
+
+    </div>
+{% endblock %}
